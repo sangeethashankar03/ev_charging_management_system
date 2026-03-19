@@ -21,7 +21,8 @@
 
         <label>Charger Type:</label>
         <select id="type">
-            <option value="">Select Charger Type</option>
+            <option value="">
+                Select Charger Type</option>
             <option>Fast</option>
             <option>Rapid</option>
             <option>Standard</option>
@@ -37,7 +38,7 @@
         </select>
         <br><br>
 
-        <label>Power(kW):</label>
+        <label>Power (kW):</label>
         <input type="number" id="power" placeholder="e.g. 50">
         <br><br>
 
@@ -46,6 +47,29 @@
         <br><br>
         
         <button onclick="addStation()">Add Station</button>
+
+        <hr>
+
+        <h2>All Charging Stations</h2>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Station Name</th>
+                    <th>Location</th>
+                    <th>Charger Type</th>
+                    <th>Status</th>
+                    <th>Power (kW)</th>
+                    <th>Last Inspected</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="stationsTable">
+            </tbody>
+        </table>
+
+        <hr>
 
     </body>
 </html>
