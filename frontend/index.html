@@ -28,7 +28,7 @@
         </select>
         <br><br>
 
-        <label>Status</label>
+        <label>Status:</label>
         <select id="status">
             <option value="">Select Status</option>
             <option>Active</option>
@@ -36,6 +36,16 @@
             <option>Inactive</option>
         </select>
         <br><br>
+
+        <label>Power(kW):</label>
+        <input type="number" id="power" placeholder="e.g. 50">
+        <br><br>
+
+        <label>Last Inspected:</label>
+        <input type="date" id="last_inspected">
+        <br><br>
+        
+        <button onclick="addStation()">Add Station</button>
 
     </body>
 </html>
