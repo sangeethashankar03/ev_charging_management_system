@@ -136,6 +136,7 @@ function editStation(id){
 
 function deleteStation(id){
 
+    if(confirm("Are you sure you want to delete this station?")){
     for(let i = 0; i < stations.length; i++){
         if(stations[i].id === id){
             stations.splice(i, 1);
@@ -144,6 +145,7 @@ function deleteStation(id){
     }
 
     displayStations();
+}
 }
 
 function searchStations(){
