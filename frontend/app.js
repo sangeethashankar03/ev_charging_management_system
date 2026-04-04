@@ -168,3 +168,9 @@ function searchStations(){
     displayStations(filteredStations);
 }
 
+function resetSearch(){
+    document.getElementById("searchInput").value = "";
+    document.getElementById("filterStatus").value = "";
+
+    displayStations(stations);
+}
