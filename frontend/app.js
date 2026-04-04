@@ -57,6 +57,30 @@ function formatDate(dateString){
     return parts[2] + "/" + parts[1] + "/" + parts[0];
 }
 
+function updateSummary(){
+    let total = stations.length;
+    let active = 0;
+    let inactive = 0;
+    let maintenance = 0;
+
+    for(let i = 0; i < stations.length; i++){
+
+        if(stations[i].status === "Active"){
+            active++;
+        } 
+        else if(stations[i].status === "Inactive"){
+            inactive++;
+        } 
+        else if(stations[i].status === "Maintenance"){
+            maintenance++;
+        }
+    }
+    document.getElementById("totalCount").innerText = total;
+    document.getElementById("activeCount").innerText = active;
+    document.getElementById("inactiveCount").innerText = inactive;
+    document.getElementById("maintenanceCount").innerText = maintenance;
+}
+
 function displayStations(){
     let table = document.getElementById("stationsTable");
     table.innerHTML = "";
@@ -83,6 +107,7 @@ function displayStations(){
 
         table.innerHTML += row;
     }
+    updateSummary();
 }
 
 function editStation(id){
