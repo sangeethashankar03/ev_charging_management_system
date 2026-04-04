@@ -57,21 +57,22 @@ function formatDate(dateString){
     return parts[2] + "/" + parts[1] + "/" + parts[0];
 }
 
-function updateSummary(){
-    let total = stations.length;
+function updateSummary(data){
+    let total = data.length;
     let active = 0;
     let inactive = 0;
     let maintenance = 0;
 
     for(let i = 0; i < stations.length; i++){
 
-        if(stations[i].status === "Active"){
+        if
+        (data[i].status === "Active"){
             active++;
         } 
-        else if(stations[i].status === "Inactive"){
+        else if(data[i].status === "Inactive"){
             inactive++;
         } 
-        else if(stations[i].status === "Maintenance"){
+        else if(data[i].status === "Maintenance"){
             maintenance++;
         }
     }
@@ -107,7 +108,8 @@ function displayStations(){
 
         table.innerHTML += row;
     }
-    updateSummary();
+
+    updateSummary(filteredStations);
 }
 
 function editStation(id){
