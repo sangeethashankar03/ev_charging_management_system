@@ -76,6 +76,7 @@ function displayStations(){
             <td>${formatDate(st.date)}</td>
             <td>
                 <button onclick="editStation(${st.id})">Edit</button>
+                <button onclick="deleteStation(${st.id})">Delete</button>
             </td>
         </tr>
         `;
@@ -104,6 +105,18 @@ function editStation(id){
             break;
         }
     }
+}
+
+function deleteStation(id){
+
+    for(let i = 0; i < stations.length; i++){
+        if(stations[i].id === id){
+            stations.splice(i, 1);
+            break;
+        }
+    }
+
+    displayStations();
 }
 
 function searchStations(){
