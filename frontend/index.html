@@ -1,85 +1,106 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>ESB eCars Station Manager</title>
-    </head>
-    <body>
-        <h1>ESB eCars - Charging Station Manager</h1>
-        <p>Internal staff dashboard to manage EV charging across Ireland</p>
+<head>
+    <title>ESB eCars Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-        <hr>
+<div class="container">
 
+    <h1>ESB eCars - Charging Station Manager</h1>
+    <p class="subtitle">
+        Internal staff dashboard to manage EV charging stations across Ireland
+    </p>
+
+    <!-- ALERT BOX -->
+    <div id="alertBox"></div>
+
+    <!-- ADD STATION -->
+    <div class="card">
         <h2>Add New Station</h2>
 
-        <label>Station Name:</label>
-        <input type="text" id="name" placeholder="e.g. Liffey Valley">
-        <br><br>
+        <div class="form-grid">
+            <input id="name" placeholder="Station Name">
+            <input id="location" placeholder="Location">
 
-        <label>Location:</label>
-        <input type="text" id="location" placeholder="e.g. Dublin">
-        <br><br>   
+            <select id="type">
+                <option value="">Select Charger Type</option>
+                <option>Fast</option>
+                <option>Rapid</option>
+                <option>Standard</option>
+            </select>
 
-        <label>Charger Type:</label>
-        <select id="type">
-            <option value="">
-                Select Charger Type</option>
-            <option>Fast</option>
-            <option>Rapid</option>
-            <option>Standard</option>
-        </select>
-        <br><br>
+            <select id="status">
+                <option value="">Select Status</option>
+                <option>Active</option>
+                <option>Maintenance</option>
+                <option>Inactive</option>
+            </select>
 
-        <label>Status:</label>
-        <select id="status">
-            <option value="">Select Status</option>
-            <option>Active</option>
-            <option>Maintenance</option>
-            <option>Inactive</option>
-        </select>
-        <br><br>
+            <input id="power" type="number" placeholder="Power (kW)">
+            <input id="date" type="date">
+        </div>
 
-        <label>Power (kW):</label>
-        <input type="number" id="power" placeholder="e.g. 50">
-        <br><br>
+        <!-- ERROR MESSAGE -->
+        <div id="errorMsg" class="error-box" style="display:none;"></div>
 
-        <label>Last Inspected:</label>
-        <input type="date" id="last_inspected">
-        <br><br>
-        
-        <button onclick="addStation()">Add Station</button>
+        <button id="submitBtn" onclick="addStation()">Add Station</button>
+    </div>
 
-        <hr>
-
+    <!-- SEARCH -->
+    <div class="card">
         <h2>Search Stations</h2>
 
-        <label>search by Name or Location:</label>
-        <input type="text" id="searchInput" placeholder="e.g. Dublin">
-        <br><br>
+        <div class="form-grid">
+            <input id="searchInput" placeholder="Search by Name or Location">
 
-        <label>Filter by Status:</label>
-        <select id="filterStatus">
-            <option value="">All Stations</option>
-            <option>Active</option>
-            <option>Maintenance</option>
-            <option>Inactive</option>
-        </select>  
-        <br><br>
+            <select id="filterStatus">
+                <option value="">All Stations</option>
+                <option>Active</option>
+                <option>Maintenance</option>
+                <option>Inactive</option>
+            </select>
+        </div>
 
         <button onclick="searchStations()">Search</button>
         <button onclick="resetSearch()">Reset</button>
+    </div>
 
-        <hr>
-
+    <!-- SUMMARY -->
+    <div class="card">
         <h2>Station Summary</h2>
 
-        <p>Total Stations: <span id="totalCount">0</span></p>
-        <p>Active: <span id="activeCount">0</span></p>
-        <p>Inactive: <span id="inactiveCount">0</span></p>
-        <p>Maintenance: <span id="maintenanceCount">0</span></p>
+        <div class="summary-grid">
+            <div class="summary-box total">
+                <h3 id="totalCount">0</h3>
+                <p>Total Stations</p>
+            </div>
 
+            <div class="summary-box active">
+                <h3 id="activeCount">0</h3>
+                <p>Active</p>
+            </div>
+
+            <div class="summary-box inactive">
+                <h3 id="inactiveCount">0</h3>
+                <p>Inactive</p>
+            </div>
+
+            <div class="summary-box maintenance">
+                <h3 id="maintenanceCount">0</h3>
+                <p>Maintenance</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TABLE -->
+    <div class="card">
         <h2>All Charging Stations</h2>
 
-        <table border="1">
+        <p id="count"></p>
+
+        <table>
             <thead>
                 <tr>
                     <th>ID</th>
@@ -92,11 +113,25 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody id="stationsTable">
-            </tbody>
+            <tbody id="stationsTable"></tbody>
         </table>
+    </div>
 
-        <hr>
-    <script src="app.js"></script>
-    </body>
+</div>
+
+<!-- DELETE MODAL -->
+<div id="deleteModal" class="modal">
+    <div class="modal-content">
+        <h3>⚠ Delete Station?</h3>
+        <p id="deleteText"></p>
+        <p>This action cannot be undone.</p>
+
+        <button onclick="confirmDelete()">Yes, Delete</button>
+        <button onclick="closeModal()">Cancel</button>
+    </div>
+</div>
+
+<script src="app.js"></script>
+
+</body>
 </html>
