@@ -13,10 +13,10 @@ function addStation(){
     let type = document.getElementById("type").value;
     let status = document.getElementById("status").value;
     let power = document.getElementById("power").value;
-    let date = document.getElementById("last_inspected").value;
+    let date = document.getElementById("date").value;
 
     let station = {
-        id: id,
+        id: currentEditId !== null ? currentEditId : id,
         name: name,
         location: location,
         type: type,
@@ -34,7 +34,7 @@ function addStation(){
     }
 
     currentEditId = null;
-    document.querySelector("button").innerText = "Add Station";
+    document.getElementById("submitBtn").innerText = "Add Station";
 
 } else {
     stations.push(station);
@@ -45,7 +45,7 @@ function addStation(){
     document.getElementById("type").value = "";
     document.getElementById("status").value = "";
     document.getElementById("power").value = "";
-    document.getElementById("last_inspected").value = "";
+    document.getElementById("date").value = "";
 
     displayStations(stations);
 
@@ -123,9 +123,9 @@ function editStation(id){
             document.getElementById("type").value = st.type;
             document.getElementById("status").value = st.status;
             document.getElementById("power").value = st.power;
-            document.getElementById("last_inspected").value = st.date;
+            document.getElementById("date").value = st.date;
             currentEditId = id;
-            document.querySelector("button").innerText = "Update Station";
+            document.getElementById("submitBtn").innerText = "Update Station";
 
             break;
         }
