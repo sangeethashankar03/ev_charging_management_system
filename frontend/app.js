@@ -6,6 +6,7 @@ function loadStations(){
 
 let stations = [];
 let id = 1;
+let currentEditId = null;
 
 function addStation(){
     let name = document.getElementById("name").value;
@@ -25,8 +26,20 @@ function addStation(){
         date: date
     };
 
+    if(currentEditId !== null){
+
+    for(let i = 0; i < stations.length; i++){
+        if(stations[i].id === currentEditId){
+            stations[i] = station;
+        }
+    }
+
+    currentEditId = null;
+
+} else {
     stations.push(station);
     id++;
+}
 
     displayStations();
 }
@@ -72,6 +85,7 @@ function editStation(id){
             document.getElementById("status").value = st.status;
             document.getElementById("power").value = st.power;
             document.getElementById("last_inspected").value = st.date;
+            currentEditId = id;
 
             break;
         }
