@@ -13,16 +13,15 @@
         Internal staff dashboard to manage EV charging stations across Ireland
     </p>
 
-    <!-- ALERT BOX -->
+
     <div id="alertBox"></div>
 
-    <!-- ADD STATION -->
     <div class="card">
         <h2>Add New Station</h2>
 
         <div class="form-grid">
-            <input id="name" placeholder="Station Name">
-            <input id="location" placeholder="Location">
+            <input id="name" placeholder="Station Name" required>
+            <input id="location" placeholder="Location" required>
 
             <select id="type">
                 <option value="">Select Charger Type</option>
@@ -38,17 +37,17 @@
                 <option>Inactive</option>
             </select>
 
-            <input id="power" type="number" placeholder="Power (kW)">
-            <input id="date" type="date">
+            <input id="power" type="number" placeholder="Power (kW)" required>
+            <input id="date" type="date" required>
         </div>
 
-        <!-- ERROR MESSAGE -->
+
         <div id="errorMsg" class="error-box" style="display:none;"></div>
 
         <button id="submitBtn" onclick="addStation()">Add Station</button>
     </div>
 
-    <!-- SEARCH -->
+    
     <div class="card">
         <h2>Search Stations</h2>
 
@@ -67,7 +66,7 @@
         <button onclick="resetSearch()">Reset</button>
     </div>
 
-    <!-- SUMMARY -->
+   
     <div class="card">
         <h2>Station Summary</h2>
 
@@ -94,7 +93,7 @@
         </div>
     </div>
 
-    <!-- TABLE -->
+ 
     <div class="card">
         <h2>All Charging Stations</h2>
 
@@ -119,7 +118,7 @@
 
 </div>
 
-<!-- DELETE MODAL -->
+
 <div id="deleteModal" class="modal">
     <div class="modal-content">
         <h3>⚠ Delete Station?</h3>
