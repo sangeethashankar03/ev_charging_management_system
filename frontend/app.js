@@ -55,3 +55,58 @@ function displayStations(){
         table.innerHTML += row;
     }
 }
+
+function searchStations(){
+
+    let searchText = document.getElementById("searchInput").value.toLowerCase();
+    let statusFilter = document.getElementById("filterStatus").value;
+
+    let filteredStations = [];
+
+    for(let i = 0; i < stations.length; i++){
+
+        let st = stations[i];
+        let nameMatch = st.name.toLowerCase().includes(searchText);
+        let locationMatch = st.location.toLowerCase().includes(searchText);
+        let statusMatch = (statusFilter === "" || st.status === statusFilter);
+
+        if((nameMatch || locationMatch) && statusMatch){
+            filteredStations.push(st);
+        }
+    }
+
+    displayFilteredStations(filteredStations);
+}
+
+function displayFilteredStations(data){
+
+    let table = document.getElementById("stationsTable");
+    table.innerHTML = "";
+
+    if(data.length === 0){
+        table.innerHTML = `
+        <tr>
+            <td colspan="8">No stations found</td>
+        </tr>`;
+        return;
+    }
+
+    for(let i = 0; i < data.length; i++){
+
+        let st = data[i];
+        let row = `
+        <tr>
+            <td>${st.id}</td>
+            <td>${st.name}</td>
+            <td>${st.location}</td>
+            <td>${st.type}</td>
+            <td>${st.status}</td>
+            <td>${st.power}</td>
+            <td>${st.date}</td>
+            <td>-</td>
+        </tr>
+        `;
+
+        table.innerHTML += row;
+    }
+}
