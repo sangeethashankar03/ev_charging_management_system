@@ -63,7 +63,7 @@ function updateSummary(data){
     let inactive = 0;
     let maintenance = 0;
 
-    for(let i = 0; i < stations.length; i++){
+    for(let i = 0; i < data.length; i++){--
 
         if
         (data[i].status === "Active"){
@@ -108,8 +108,6 @@ function displayStations(){
 
         table.innerHTML += row;
     }
-
-    updateSummary(filteredStations);
 }
 
 function editStation(id){
@@ -168,6 +166,7 @@ function searchStations(){
     }
 
     displayFilteredStations(filteredStations);
+    updateSummary(filteredStations);
 }
 
 function displayFilteredStations(data){
