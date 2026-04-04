@@ -47,9 +47,14 @@ function addStation(){
     document.getElementById("status").value = "";
     document.getElementById("power").value = "";
     document.getElementById("last_inspected").value = "";
-    
+
     displayStations();
 
+}
+
+function formatDate(dateString){
+    let parts = dateString.split("-");
+    return parts[2] + "/" + parts[1] + "/" + parts[0];
 }
 
 function displayStations(){
@@ -68,7 +73,7 @@ function displayStations(){
             <td>${st.type}</td>
             <td>${st.status}</td>
             <td>${st.power}</td>
-            <td>${st.date}</td>
+            <td>${formatDate(st.date)}</td>
             <td>
                 <button onclick="editStation(${st.id})">Edit</button>
             </td>
