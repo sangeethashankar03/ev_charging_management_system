@@ -1,0 +1,156 @@
+body {
+    font-family: Arial;
+    background: #f2f2f2;
+    margin: 0;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+h1 {
+    color: #1b5e20;
+}
+
+.subtitle {
+    color: #2e7d32;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+h2 {
+    border-bottom: 3px solid green;
+    padding-bottom: 5px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+input, select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 15px;
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.card:nth-child(2) button {
+    background: #666;
+}
+
+.edit-btn {
+    background: orange;
+}
+
+.delete-btn {
+    background: red;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background: #2e7d32;
+    color: white;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.summary-box {
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.summary-box h3 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.summary-box p {
+    margin: 5px 0 0;
+}
+
+.total {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.active {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.inactive {
+    background: #fdecea;
+    color: #c62828;
+}
+
+.maintenance {
+    background: #fff8e1;
+    color: #ef6c00;
+}
+
+.error-box {
+    background: #fdecea;
+    color: #c62828;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+}
+
+.modal-content button {
+    margin: 10px;
+}
