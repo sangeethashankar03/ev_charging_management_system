@@ -35,13 +35,21 @@ function addStation(){
     }
 
     currentEditId = null;
+    document.querySelector("button").innerText = "Add Station";
 
 } else {
     stations.push(station);
     id++;
 }
-
+    document.getElementById("name").value = "";
+    document.getElementById("location").value = "";
+    document.getElementById("type").value = "";
+    document.getElementById("status").value = "";
+    document.getElementById("power").value = "";
+    document.getElementById("last_inspected").value = "";
+    
     displayStations();
+
 }
 
 function displayStations(){
@@ -86,6 +94,7 @@ function editStation(id){
             document.getElementById("power").value = st.power;
             document.getElementById("last_inspected").value = st.date;
             currentEditId = id;
+            document.querySelector("button").innerText = "Update Station";
 
             break;
         }
