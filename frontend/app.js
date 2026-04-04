@@ -1,7 +1,6 @@
 window.onload = loadStations;
 function loadStations(){
-    const table = document.getElementById("stationsTable");
-    table.innerHTML="";
+    displayStations(stations);
 }
 
 let stations = [];
@@ -48,7 +47,7 @@ function addStation(){
     document.getElementById("power").value = "";
     document.getElementById("last_inspected").value = "";
 
-    displayStations();
+    displayStations(stations);
 
 }
 
@@ -63,7 +62,7 @@ function updateSummary(data){
     let inactive = 0;
     let maintenance = 0;
 
-    for(let i = 0; i < data.length; i++){--
+    for(let i = 0; i < data.length; i++){
 
         if
         (data[i].status === "Active"){
@@ -82,13 +81,13 @@ function updateSummary(data){
     document.getElementById("maintenanceCount").innerText = maintenance;
 }
 
-function displayStations(){
+function displayStations(data){
     let table = document.getElementById("stationsTable");
     table.innerHTML = "";
 
-    for(let i = 0; i < stations.length; i++){
+    for(let i = 0; i < data.length; i++){
 
-        let st = stations[i];
+        let st = data[i];
 
         let row = `
         <tr>
@@ -108,6 +107,7 @@ function displayStations(){
 
         table.innerHTML += row;
     }
+    updateSummary(data);
 }
 
 function editStation(id){
@@ -142,7 +142,7 @@ function deleteStation(id){
         }
     }
 
-    displayStations();
+    displayStations(stations);
 }
 }
 
@@ -165,39 +165,6 @@ function searchStations(){
         }
     }
 
-    displayFilteredStations(filteredStations);
-    updateSummary(filteredStations);
+    displayStations(filteredStations);
 }
 
-function displayFilteredStations(data){
-
-    let table = document.getElementById("stationsTable");
-    table.innerHTML = "";
-
-    if(data.length === 0){
-        table.innerHTML = `
-        <tr>
-            <td colspan="8">No stations found</td>
-        </tr>`;
-        return;
-    }
-
-    for(let i = 0; i < data.length; i++){
-
-        let st = data[i];
-        let row = `
-        <tr>
-            <td>${st.id}</td>
-            <td>${st.name}</td>
-            <td>${st.location}</td>
-            <td>${st.type}</td>
-            <td>${st.status}</td>
-            <td>${st.power}</td>
-            <td>${st.date}</td>
-            <td>-</td>
-        </tr>
-        `;
-
-        table.innerHTML += row;
-    }
-}
