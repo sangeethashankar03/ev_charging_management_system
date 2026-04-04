@@ -48,11 +48,33 @@ function displayStations(){
             <td>${st.status}</td>
             <td>${st.power}</td>
             <td>${st.date}</td>
-            <td>-</td>
+            <td>
+                <button onclick="editStation(${st.id})">Edit</button>
+            </td>
         </tr>
         `;
 
         table.innerHTML += row;
+    }
+}
+
+function editStation(id){
+
+    for(let i = 0; i < stations.length; i++){
+
+        if(stations[i].id === id){
+
+            let st = stations[i];
+
+            document.getElementById("name").value = st.name;
+            document.getElementById("location").value = st.location;
+            document.getElementById("type").value = st.type;
+            document.getElementById("status").value = st.status;
+            document.getElementById("power").value = st.power;
+            document.getElementById("last_inspected").value = st.date;
+
+            break;
+        }
     }
 }
 
