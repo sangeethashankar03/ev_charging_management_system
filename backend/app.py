@@ -45,3 +45,31 @@ def get_stations():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+@app.route("/stations", methods=["POST"])
+def add_station():
+    data = request.json
+
+    if not data.get("name") or not data.get("location"):
+        return jsonify({"error": "Missing required fields"}), 400
+
+    conn = get_db()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        INSERT INTO stations (name, location, type, status, power, date)
+        VALUES (?, ?, ?, ?, ?, ?)
+    """, (
+        data["name"],
+        data["location"],
+        data["type"],
+        data["status"],
+        data["power"],
+        data["date"]
+    ))
+
+    conn.commit()
+    new_id = cursor.lastrowid
+    conn.close()
+
+    return jsonify({"id": new_id, "message": "Station added"}), 201
