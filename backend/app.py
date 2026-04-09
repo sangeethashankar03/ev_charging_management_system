@@ -97,3 +97,12 @@ def update_station(id):
     conn.close()
 
     return jsonify({"message": "Station updated"})
+
+@app.route("/stations/<int:id>", methods=["DELETE"])
+def delete_station(id):
+    conn = get_db()
+    conn.execute("DELETE FROM stations WHERE id=?", (id,))
+    conn.commit()
+    conn.close()
+
+    return jsonify({"message": "Station deleted"})
