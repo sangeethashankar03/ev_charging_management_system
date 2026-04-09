@@ -56,6 +56,15 @@ def add_station():
     conn = get_db()
     cursor = conn.cursor()
 
+    existing = cursor.execute("""
+        SELECT * FROM stations
+        WHERE name=? AND location=?
+    """, (data["name"], data["location"])).fetchone()
+
+    if existing:
+        conn.close()
+        return jsonify({"error": "Station already exists"}), 409
+        
     cursor.execute("""
         INSERT INTO stations (name, location, type, status, power, date)
         VALUES (?, ?, ?, ?, ?, ?)
