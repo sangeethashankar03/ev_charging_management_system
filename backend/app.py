@@ -73,3 +73,27 @@ def add_station():
     conn.close()
 
     return jsonify({"id": new_id, "message": "Station added"}), 201
+
+@app.route("/stations/<int:id>", methods=["PUT"])
+def update_station(id):
+    data = request.json
+
+    conn = get_db()
+    conn.execute("""
+        UPDATE stations
+        SET name=?, location=?, type=?, status=?, power=?, date=?
+        WHERE id=?
+    """, (
+        data["name"],
+        data["location"],
+        data["type"],
+        data["status"],
+        data["power"],
+        data["date"],
+        id
+    ))
+
+    conn.commit()
+    conn.close()
+
+    return jsonify({"message": "Station updated"})
