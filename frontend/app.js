@@ -8,11 +8,9 @@ async function loadStations(){
     displayStations(data);
 }
 
-let stations = [];
-let id = 1;
 let currentEditId = null;
 
-function addStation(){
+async function addStation(){
     let name = document.getElementById("name").value;
     let location = document.getElementById("location").value;
     let type = document.getElementById("type").value;
@@ -20,8 +18,12 @@ function addStation(){
     let power = document.getElementById("power").value;
     let date = document.getElementById("date").value;
 
+    if(!name || !location || !type || !status || !power || !date){
+        showAlert("Please fill all fields before adding station", "error");
+        return;
+    }
+
     let station = {
-        id: currentEditId !== null ? currentEditId : id,
         name: name,
         location: location,
         type: type,
@@ -32,27 +34,39 @@ function addStation(){
 
     if(currentEditId !== null){
 
-    for(let i = 0; i < stations.length; i++){
-        if(stations[i].id === currentEditId){
-            stations[i] = station;
-        }
-    }
+    await fetch(`${API_URL}/${currentEditId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(station)
+    });
+
+    showAlert("Station updated successfully");
 
     currentEditId = null;
     document.getElementById("submitBtn").innerText = "Add Station";
+    document.getElementById("submitBtn").classList.remove("update-mode");
+    
+    clearForm();
+    loadStations();
+} 
 
-} else {
-    stations.push(station);
-    id++;
+else {
+
+    let res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(station)
+    });
+
+    if(res.status === 409){
+        showAlert("Station already exists", "error");
+        return;
+    }
+
+    showAlert("Station added successfully");
+    clearForm();
+    loadStations();
 }
-    document.getElementById("name").value = "";
-    document.getElementById("location").value = "";
-    document.getElementById("type").value = "";
-    document.getElementById("status").value = "";
-    document.getElementById("power").value = "";
-    document.getElementById("date").value = "";
-
-    displayStations(stations);
 
 }
 
