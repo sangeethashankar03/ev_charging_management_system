@@ -1,6 +1,11 @@
+const API_URL = "http://127.0.0.1:5000/stations";
+
 window.onload = loadStations;
-function loadStations(){
-    displayStations(stations);
+
+async function loadStations(){
+    let res = await fetch(API_URL);
+    let data = await res.json();
+    displayStations(data);
 }
 
 let stations = [];
@@ -174,3 +179,4 @@ function resetSearch(){
 
     displayStations(stations);
 }
+
