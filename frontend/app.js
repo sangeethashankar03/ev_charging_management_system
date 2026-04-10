@@ -129,26 +129,22 @@ function displayStations(data){
     updateSummary(data);
 }
 
-function editStation(id){
+async function editStation(id){
 
-    for(let i = 0; i < stations.length; i++){
+    let res = await fetch(`${API_URL}`);
+    let data = await res.json();
 
-        if(stations[i].id === id){
-
-            let st = stations[i];
-
+    let st = data.find(s => s.id === id);
             document.getElementById("name").value = st.name;
             document.getElementById("location").value = st.location;
             document.getElementById("type").value = st.type;
             document.getElementById("status").value = st.status;
             document.getElementById("power").value = st.power;
             document.getElementById("date").value = st.date;
+
             currentEditId = id;
             document.getElementById("submitBtn").innerText = "Update Station";
-
-            break;
-        }
-    }
+            document.getElementById("submitBtn").classList.add("update-mode");
 }
 
 function deleteStation(id){
