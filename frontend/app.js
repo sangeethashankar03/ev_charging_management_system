@@ -83,8 +83,7 @@ function updateSummary(data){
 
     for(let i = 0; i < data.length; i++){
 
-        if
-        (data[i].status === "Active"){
+        if(data[i].status === "Active"){
             active++;
         } 
         else if(data[i].status === "Inactive"){
@@ -161,26 +160,21 @@ function deleteStation(id){
 }
 }
 
-function searchStations(){
+async function searchStations(){
 
     let searchText = document.getElementById("searchInput").value.toLowerCase();
     let statusFilter = document.getElementById("filterStatus").value;
 
-    let filteredStations = [];
+    let res = await fetch(API_URL);
+    let data = await res.json();
 
-    for(let i = 0; i < stations.length; i++){
+    let filtered = data.filter(st =>
+        (st.name.toLowerCase().includes(searchText) ||
+        st.location.toLowerCase().includes(searchText)) &&
+        (statusFilter === "" || st.status === statusFilter)
+    );
 
-        let st = stations[i];
-        let nameMatch = st.name.toLowerCase().includes(searchText);
-        let locationMatch = st.location.toLowerCase().includes(searchText);
-        let statusMatch = (statusFilter === "" || st.status === statusFilter);
-
-        if((nameMatch || locationMatch) && statusMatch){
-            filteredStations.push(st);
-        }
-    }
-
-    displayStations(filteredStations);
+    displayStations(filtered);
 }
 
 function resetSearch(){
