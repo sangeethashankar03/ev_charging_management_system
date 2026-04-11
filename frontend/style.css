@@ -148,8 +148,7 @@ th {
 }
 
 #deleteAlertBox {
-    background: #4caf50;
-    color: white;
+    color: rgb(51, 213, 11);
     padding: 12px;
     border-radius: 6px;
     margin-bottom: 15px;
@@ -157,7 +156,7 @@ th {
 }
 
 #alertBox {
-    text-align: right;
+    text-align: left;
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 10px;

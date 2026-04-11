@@ -5,12 +5,7 @@ function showAlert(message, type = "success") {
     if (!alertBox) return;
     alertBox.textContent = message;
     alertBox.style.display = "block";
-    alertBox.style.backgroundColor = type === "success" ? "#4caf50" : "#f44336";
-    alertBox.style.color = "white";
-    alertBox.style.padding = "12px";
-    alertBox.style.borderRadius = "6px";
-    alertBox.style.marginBottom = "15px";
-    alertBox.style.textAlign = "center";
+    alertBox.style.color = type === "success" ? "#4caf50" : "#f44336";
     setTimeout(() => {
         alertBox.style.display = "none";
     }, 3000);
