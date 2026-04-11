@@ -123,8 +123,8 @@ function displayStations(data){
             <td>${st.power}</td>
             <td>${formatDate(st.date)}</td>
             <td>
-                <button onclick="editStation(${st.id})">Edit</button>
-                <button onclick="deleteStation(${st.id})">Delete</button>
+                <button class="edit-btn" onclick="editStation(${st.id})">Edit</button>
+                <button class="delete-btn" onclick="deleteStation(${st.id})">Delete</button>
             </td>
         </tr>
         `;
@@ -195,8 +195,7 @@ async function searchStations(){
 function resetSearch(){
     document.getElementById("searchInput").value = "";
     document.getElementById("filterStatus").value = "";
-
-    displayStations(stations);
+    loadStations();
 }
 
 

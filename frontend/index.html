@@ -7,15 +7,12 @@
 <body>
 
 <div class="container">
-
     <h1>ESB eCars - Charging Station Manager</h1>
     <p class="subtitle">
         Internal staff dashboard to manage EV charging stations across Ireland
     </p>
 
-
     <div id="alertBox"></div>
-
     <div class="card">
         <h2>Add New Station</h2>
 
@@ -40,20 +37,15 @@
             <input id="power" type="number" placeholder="Power (kW)" required>
             <input id="date" type="date" required>
         </div>
-
-
         <div id="errorMsg" class="error-box" style="display:none;"></div>
-
         <button id="submitBtn" onclick="addStation()">Add Station</button>
     </div>
 
     
     <div class="card">
         <h2>Search Stations</h2>
-
         <div class="form-grid">
             <input id="searchInput" placeholder="Search by Name or Location">
-
             <select id="filterStatus">
                 <option value="">All Stations</option>
                 <option>Active</option>
@@ -61,7 +53,6 @@
                 <option>Inactive</option>
             </select>
         </div>
-
         <button onclick="searchStations()">Search</button>
         <button onclick="resetSearch()">Reset</button>
     </div>
@@ -96,9 +87,8 @@
  
     <div class="card">
         <h2>All Charging Stations</h2>
-
         <p id="count"></p>
-
+        <div id="deleteAlertBox" style="display:none;"></div>
         <table>
             <thead>
                 <tr>
@@ -115,16 +105,14 @@
             <tbody id="stationsTable"></tbody>
         </table>
     </div>
-
 </div>
 
 
 <div id="deleteModal" class="modal">
     <div class="modal-content">
-        <h3>⚠ Delete Station?</h3>
+        <h3>Delete Station?</h3>
         <p id="deleteText"></p>
         <p>This action cannot be undone.</p>
-
         <button onclick="confirmDelete()">Yes, Delete</button>
         <button onclick="closeModal()">Cancel</button>
     </div>
