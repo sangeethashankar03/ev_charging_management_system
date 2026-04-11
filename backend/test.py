@@ -85,5 +85,23 @@ class TestEVChargingApp(unittest.TestCase):
         response = self.client.put(f'/stations/{station_id}', json=updated_data)
         self.assertEqual(response.status_code, 200)
 
+    def test_full_flow(self):
+        data = {
+            "name": "Integration Station",
+            "location": "Test City",
+            "type": "Fast",
+            "status": "Active",
+            "power": 100,
+            "date": "2026-04-08"
+        }
+        post_response = self.client.post('/stations', json=data)
+        self.assertEqual(post_response.status_code, 201)
+
+        get_response = self.client.get('/stations')
+        self.assertEqual(get_response.status_code, 200)
+        stations = json.loads(get_response.data)
+        found = any(s["name"] == "Integration Station" for s in stations)
+        self.assertTrue(found)
+
 if __name__ == '__main__':
     unittest.main(verbosity=2)
