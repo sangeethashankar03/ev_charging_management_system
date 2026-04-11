@@ -43,9 +43,6 @@ def get_stations():
     stations = [dict(row) for row in rows]
     return jsonify(stations)
 
-if __name__ == "__main__":
-    app.run(debug=True)
-
 @app.route("/stations", methods=["POST"])
 def add_station():
     data = request.json
@@ -115,3 +112,7 @@ def delete_station(id):
     conn.close()
 
     return jsonify({"message": "Station deleted"})
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
