@@ -103,6 +103,12 @@ function displayStations(data){
     let table = document.getElementById("stationsTable");
     table.innerHTML = "";
 
+    if(data.length === 0){
+        table.innerHTML = `<tr><td colspan="8">No stations found</td></tr>`;
+        updateSummary(data);
+        return;
+    }
+
     for(let i = 0; i < data.length; i++){
 
         let st = data[i];
