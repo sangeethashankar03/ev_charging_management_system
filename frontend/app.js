@@ -176,10 +176,14 @@ async function confirmDelete(){
         await fetch(`${API_URL}/${stationToDeleteId}`, {
             method: "DELETE"
         });
-
-
         closeModal();
-        showAlert("Station deleted successfully");
+        const deleteAlert = document.getElementById("deleteAlertBox");
+        deleteAlert.textContent = "Station deleted successfully";
+        deleteAlert.style.display = "block";
+        setTimeout(() => {
+            deleteAlert.style.display = "none";
+        }, 3000);
+
         loadStations();
     }
 }

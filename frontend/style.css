@@ -123,14 +123,6 @@ th {
     color: #ef6c00;
 }
 
-.error-box {
-    background: #fdecea;
-    color: #c62828;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
 .modal {
     display: none;
     position: fixed;
@@ -153,4 +145,20 @@ th {
 
 .modal-content button {
     margin: 10px;
+}
+
+#deleteAlertBox {
+    background: #4caf50;
+    color: white;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#alertBox {
+    text-align: right;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }

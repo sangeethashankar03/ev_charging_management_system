@@ -11,8 +11,7 @@
     <p class="subtitle">
         Internal staff dashboard to manage EV charging stations across Ireland
     </p>
-
-    <div id="alertBox"></div>
+    
     <div class="card">
         <h2>Add New Station</h2>
         <div class="form-grid">
@@ -36,7 +35,7 @@
             <input id="power" type="number" placeholder="Power (kW)" required>
             <input id="date" type="date" required>
         </div>
-        <div id="errorMsg" class="error-box" style="display:none;"></div>
+        <div id="alertBox"></div>
         <button id="submitBtn" onclick="addStation()">Add Station</button>
     </div>
     
@@ -95,6 +94,7 @@
                     <th onclick="sortTable(4)">Status <span id="icon-4">↕</span></th>
                     <th onclick="sortTable(5)">Power (kW) <span id="icon-5">↕</span></th>
                     <th onclick="sortTable(6)">Last Inspected <span id="icon-6">↕</span></th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody id="stationsTable"></tbody>
