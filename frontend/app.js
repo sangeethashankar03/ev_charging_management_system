@@ -204,9 +204,17 @@ function resetSearch(){
     loadStations();
 }
 
+function clearForm(){
+    document.getElementById("name").value = "";
+    document.getElementById("location").value = "";
+    document.getElementById("type").value = "";
+    document.getElementById("status").value = "";
+    document.getElementById("power").value = "";
+    document.getElementById("date").value = "";
+}
+
 let sortDirection = 1;
 let lastSortedColumn = -1;
-
 function sortTable(columnIndex) {
     const table = document.querySelector('table');
     const tbody = table.querySelector('tbody');
