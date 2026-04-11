@@ -1,5 +1,21 @@
 const API_URL = "http://127.0.0.1:5000/stations";
 
+function showAlert(message, type = "success") {
+    const alertBox = document.getElementById("alertBox");
+    if (!alertBox) return;
+    alertBox.textContent = message;
+    alertBox.style.display = "block";
+    alertBox.style.backgroundColor = type === "success" ? "#4caf50" : "#f44336";
+    alertBox.style.color = "white";
+    alertBox.style.padding = "12px";
+    alertBox.style.borderRadius = "6px";
+    alertBox.style.marginBottom = "15px";
+    alertBox.style.textAlign = "center";
+    setTimeout(() => {
+        alertBox.style.display = "none";
+    }, 3000);
+}
+
 window.onload = loadStations;
 
 async function loadStations(){
@@ -160,6 +176,8 @@ async function confirmDelete(){
         await fetch(`${API_URL}/${stationToDeleteId}`, {
             method: "DELETE"
         });
+
+
         closeModal();
         showAlert("Station deleted successfully");
         loadStations();
