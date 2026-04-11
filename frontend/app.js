@@ -33,13 +33,11 @@ async function addStation(){
     };
 
     if(currentEditId !== null){
-
     await fetch(`${API_URL}/${currentEditId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(station)
     });
-
     showAlert("Station updated successfully");
 
     currentEditId = null;
@@ -51,18 +49,15 @@ async function addStation(){
 } 
 
 else {
-
     let res = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(station)
     });
-
     if(res.status === 409){
         showAlert("Station already exists", "error");
         return;
     }
-
     showAlert("Station added successfully");
     clearForm();
     loadStations();
@@ -82,7 +77,6 @@ function updateSummary(data){
     let maintenance = 0;
 
     for(let i = 0; i < data.length; i++){
-
         if(data[i].status === "Active"){
             active++;
         } 
@@ -102,7 +96,6 @@ function updateSummary(data){
 function displayStations(data){
     let table = document.getElementById("stationsTable");
     table.innerHTML = "";
-
     if(data.length === 0){
         table.innerHTML = `<tr><td colspan="8">No stations found</td></tr>`;
         updateSummary(data);
@@ -110,9 +103,7 @@ function displayStations(data){
     }
 
     for(let i = 0; i < data.length; i++){
-
         let st = data[i];
-
         let row = `
         <tr>
             <td>${st.id}</td>
@@ -140,16 +131,16 @@ async function editStation(id){
     let data = await res.json();
 
     let st = data.find(s => s.id === id);
-            document.getElementById("name").value = st.name;
-            document.getElementById("location").value = st.location;
-            document.getElementById("type").value = st.type;
-            document.getElementById("status").value = st.status;
-            document.getElementById("power").value = st.power;
-            document.getElementById("date").value = st.date;
+    document.getElementById("name").value = st.name;
+    document.getElementById("location").value = st.location;
+    document.getElementById("type").value = st.type;
+    document.getElementById("status").value = st.status;
+    document.getElementById("power").value = st.power;
+    document.getElementById("date").value = st.date;
 
-            currentEditId = id;
-            document.getElementById("submitBtn").innerText = "Update Station";
-            document.getElementById("submitBtn").classList.add("update-mode");
+    currentEditId = id;
+    document.getElementById("submitBtn").innerText = "Update Station";
+    document.getElementById("submitBtn").classList.add("update-mode");
 }
 
 let stationToDeleteId = null;
@@ -179,16 +170,13 @@ async function searchStations(){
 
     let searchText = document.getElementById("searchInput").value.toLowerCase();
     let statusFilter = document.getElementById("filterStatus").value;
-
     let res = await fetch(API_URL);
     let data = await res.json();
-
     let filtered = data.filter(st =>
         (st.name.toLowerCase().includes(searchText) ||
         st.location.toLowerCase().includes(searchText)) &&
         (statusFilter === "" || st.status === statusFilter)
     );
-
     displayStations(filtered);
 }
 
@@ -198,4 +186,33 @@ function resetSearch(){
     loadStations();
 }
 
+let sortDirection = 1;
+let lastSortedColumn = -1;
 
+function sortTable(columnIndex) {
+    const table = document.querySelector('table');
+    const tbody = table.querySelector('tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+    rows.sort((a, b) => {
+        let cellA = a.cells[columnIndex].textContent.trim();
+        let cellB = b.cells[columnIndex].textContent.trim();
+        if (columnIndex === 0 || columnIndex === 5) {
+            cellA = parseFloat(cellA) || 0;
+            cellB = parseFloat(cellB) || 0;
+        }
+        if (cellA < cellB) return -1 * sortDirection;
+        if (cellA > cellB) return 1 * sortDirection;
+        return 0;
+    });
+    tbody.innerHTML = '';
+    rows.forEach(row => tbody.appendChild(row));
+    if (lastSortedColumn !== -1) {
+        document.getElementById('icon-' + lastSortedColumn).textContent = '↕';
+        document.querySelectorAll('th').forEach(th => th.classList.remove('sorted'));
+    }
+    const icon = document.getElementById('icon-' + columnIndex);
+    icon.textContent = sortDirection === 1 ? '▲' : '▼';
+    icon.parentElement.classList.add('sorted');
+    lastSortedColumn = columnIndex;
+    sortDirection *= -1;
+}
