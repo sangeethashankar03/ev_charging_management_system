@@ -152,18 +152,27 @@ async function editStation(id){
             document.getElementById("submitBtn").classList.add("update-mode");
 }
 
+let stationToDeleteId = null;
+
 function deleteStation(id){
-
-    if(confirm("Are you sure you want to delete this station?")){
-    for(let i = 0; i < stations.length; i++){
-        if(stations[i].id === id){
-            stations.splice(i, 1);
-            break;
-        }
-    }
-
-    displayStations(stations);
+    stationToDeleteId = id;
+    document.getElementById("deleteModal").style.display = "flex";
 }
+
+function closeModal(){
+    document.getElementById("deleteModal").style.display = "none";
+    stationToDeleteId = null;
+}
+
+async function confirmDelete(){
+    if(stationToDeleteId){
+        await fetch(`${API_URL}/${stationToDeleteId}`, {
+            method: "DELETE"
+        });
+        closeModal();
+        showAlert("Station deleted successfully");
+        loadStations();
+    }
 }
 
 async function searchStations(){
@@ -189,4 +198,5 @@ function resetSearch(){
 
     displayStations(stations);
 }
+
 
