@@ -18,11 +18,11 @@
             <input id="name" placeholder="Station Name" required>
             <input id="location" placeholder="Location" required>
 
-            <select id="type">
+            <select id="type" onchange="autoFillPower()">
                 <option value="">Select Charger Type</option>
-                <option>Fast</option>
-                <option>Rapid</option>
-                <option>Standard</option>
+                <option value="Standard">Standard</option>
+                <option value="Fast">Fast</option>
+                <option value="Rapid">Rapid</option>
             </select>
 
             <select id="status">
@@ -32,7 +32,7 @@
                 <option>Inactive</option>
             </select>
 
-            <input id="power" type="number" placeholder="Power (kW)" required>
+            <input id="power" type="text" placeholder="Power (kW)" required>
             <input id="date" type="date" required>
         </div>
         <div id="alertBox"></div>
@@ -92,7 +92,7 @@
                     <th onclick="sortTable(2)">Location <span id="icon-2">↕</span></th>
                     <th onclick="sortTable(3)">Charger Type <span id="icon-3">↕</span></th>
                     <th onclick="sortTable(4)">Status <span id="icon-4">↕</span></th>
-                    <th onclick="sortTable(5)">Power (kW) <span id="icon-5">↕</span></th>
+                    <th onclick="sortTable(5)">Power <span id="icon-5">↕</span></th>
                     <th onclick="sortTable(6)">Last Inspected <span id="icon-6">↕</span></th>
                     <th>Actions</th>
                 </tr>

@@ -22,7 +22,7 @@ def init_db():
         location TEXT NOT NULL,
         type TEXT NOT NULL,
         status TEXT NOT NULL,
-        power INTEGER NOT NULL,
+        power TEXT NOT NULL,
         date TEXT NOT NULL
     )
     """)

@@ -212,6 +212,21 @@ function clearForm(){
     document.getElementById("date").value = "";
 }
 
+function autoFillPower() {
+    let type = document.getElementById("type").value;
+    let power = document.getElementById("power");
+    
+    if(type === "Standard") {
+        power.value = "22 kW";
+    } else if(type === "Fast") {
+        power.value = "50 kW";
+    } else if(type === "Rapid") {
+        power.value = "100 kW";
+    } else {
+        power.value = "";
+    }
+}
+
 let sortDirection = 1;
 let lastSortedColumn = -1;
 function sortTable(columnIndex) {
