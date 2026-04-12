@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:5000/stations";
+const API_URL = "http://54.226.76.176:5000/stations";
 
 function showAlert(message, type = "success") {
     const alertBox = document.getElementById("alertBox");
