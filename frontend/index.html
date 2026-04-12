@@ -8,10 +8,7 @@
 
 <div class="container">
     <h1>ESB eCars - Charging Station Manager</h1>
-    <p class="subtitle">
-        Internal staff dashboard to manage EV charging stations across Ireland
-    </p>
-    
+   
     <div class="card">
         <h2>Add New Station</h2>
         <div class="form-grid">
@@ -41,7 +38,7 @@
     
     <div class="card">
         <h2>Search Stations</h2>
-        <div class="form-grid">
+        <div class="form-grid search-grid">
             <input id="searchInput" placeholder="Search by Name or Location">
             <select id="filterStatus">
                 <option value="">All Stations</option>
@@ -49,10 +46,10 @@
                 <option>Maintenance</option>
                 <option>Inactive</option>
             </select>
-        </div>
-        <button onclick="searchStations()">Search</button>
-        <button onclick="resetSearch()">Reset</button>
+            <button class="search-btn" onclick="searchStations()">Search</button>
+            <button class="reset-btn" onclick="resetSearch()">Reset</button>
     </div>
+</div>
    
     <div class="card">
         <h2>Station Summary</h2>
