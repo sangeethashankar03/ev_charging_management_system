@@ -154,20 +154,24 @@ http://54.226.76.176
 
 ## Use of AI and External Resources
 
-This project was developed with the assistance of AI tools.
-
 ### AI Usage
 
-AI tools such as ChatGPT and Claude were used during this project to:
-- Understand concepts such as REST APIs, CRUD operations, and Flask development
+AI tools were used during this project to:
+- Understand concepts such as REST APIs and Flask development
 - Assist in generating and structuring parts of the code
 - Debug errors and improve implementation
 - Guide the development process
 
 ### External Resources
 
-- W3Schools - for HTML, CSS, and JavaScript concepts
-
+- W3Schools (https://www.w3schools.com) - Referenced for HTML, CSS, and JavaScript concepts
+- Flask Documentation (https://flask.palletsprojects.com) - Used to set up Flask routes
+- Flask-CORS Documentation (https://flask-cors.readthedocs.io/en/latest/) - Used to understand CORS and implement communication between the frontend and Flask backend
+- MDN Fetch API Documentation (https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) - Used to understand and implement API requests from the frontend to the backend
+- SQLite Documentation (https://www.sqlite.org/docs.html) - Used to understand how SQLite works and perform SQL operations
+- Python unittest Documentation (https://docs.python.org/3/library/unittest.html) - Used to write unit and integration tests for CRUD operations
+- Youtube (https://youtube.com/shorts/XkhQYCAKzfY) - Used to learn how to create and set up an AWS EC2 instance for deploying Flask backend
+  
 
 ## Conclusion
 
